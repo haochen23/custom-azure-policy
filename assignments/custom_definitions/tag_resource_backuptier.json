@@ -1,21 +1,9 @@
 {
-    "ppd": [
+    "dev": [
         {
             "short_name": "BackupTierTagCompliance",
             "display_name": "BackupTier tag presence",
             "description": "BackupTier tag presence on resources - PreProd",
-            "parameters": {
-                "effect": [
-                    "Audit"
-                ]
-            }
-        }
-    ],
-    "prd": [
-        {
-            "short_name": "BackupTierTagCompliance",
-            "display_name": "BackupTier tag presence",
-            "description": "BackupTier tag presence on resources - Prod",
             "parameters": {
                 "effect": [
                     "Audit"
