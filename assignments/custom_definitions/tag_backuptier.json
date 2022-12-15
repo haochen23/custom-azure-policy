@@ -1,7 +1,7 @@
 {
     "dev": [
         {
-            "short_name": "BackupTierTagCompliance",
+            "short_name": "backup_tag",
             "display_name": "BackupTier tag presence",
             "description": "BackupTier tag presence on resources - PreProd",
             "parameters": {
