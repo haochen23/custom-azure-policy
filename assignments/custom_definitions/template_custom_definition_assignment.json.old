@@ -1,0 +1,35 @@
+{
+    "dev": [
+        {
+            "short_name": "Short Name of the custom definition assignment",
+            "display_name": "Display Name of the custom definition assignment",
+            "description": "Definition assignment description",
+            "not_scopes": [],
+            "parameters": {
+                "parameter_name": "parameter_value"
+            }
+        }
+    ],
+    "ppd": [
+        {
+            "short_name": "Short Name of the custom definition assignment",
+            "display_name": "Display Name of the custom definition assignment",
+            "description": "Definition assignment description",
+            "not_scopes": [],
+            "parameters": {
+                "parameter_name": "parameter_value"
+            }
+        }
+    ],
+    "prd": [
+        {
+            "short_name": "Short Name of the custom definition assignment",
+            "display_name": "Display Name of the custom definition assignment",
+            "description": "Definition assignment description",
+            "not_scopes": [],
+            "parameters": {
+                "parameter_name": "parameter_value"
+            }
+        }
+    ]
+}

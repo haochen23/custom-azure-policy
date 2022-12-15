@@ -1,0 +1,106 @@
+{
+    "properties": {
+        "displayName": "Inherit Mandatory Tags from Resource Groups",
+        "policyType": "Custom",
+        "mode": "Indexed",
+        "description": "Inherit Mandatory Tags from Resource Groups",
+        "metadata": {
+            "category": "Tags",
+            "version": "1.0.0",
+            "source": "AzurePolicies/policy-data"
+        },
+        "parameters": {
+            "effect": {
+              "type": "String",
+              "metadata": {
+                "displayName": "effect"
+              },
+              "allowedValues": [
+                "Audit",
+                "Modify",
+                "Disabled"
+              ],
+              "defaultValue": "Modify"
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allof":[
+                    {
+                        "anyOf": [
+                            {
+                                "field": "tags['AssetID']",
+                                "notEquals": "[resourcegroup().tags['AssetID']]"
+                            },
+                            {
+                                "field": "tags['AssetName']",
+                                "notEquals": "[resourcegroup().tags['AssetName']]"
+                            },
+                            {
+                                "field": "tags['CostCentre']",
+                                "notEquals": "[resourcegroup().tags['CostCentre']]"
+                            },
+                            {
+                                "field": "tags['CostCentreName']",
+                                "notEquals": "[resourcegroup().tags['CostCentreName']]"
+                            },
+                            {
+                                "field": "tags['DataClassification']",
+                                "notEquals": "[resourcegroup().tags['DataClassification']]"
+                            },
+                            {
+                                "field": "tags['Environment']",
+                                "notEquals": "[resourcegroup().tags['Environment']]"
+                            }
+                        ]
+                    },
+                    {
+                        "field": "type",
+                        "notEquals": "Microsoft.Resources/subscriptions/resourceGroups" 
+                    }
+                ]
+
+            },
+            "then": {
+                "details": {
+                    "operations": [
+                        {
+                            "field": "tags['AssetID']",
+                            "operation": "addOrReplace",
+                            "value": "[resourcegroup().tags['AssetID']]"
+                        },
+                        {
+                            "field": "tags['AssetName']",
+                            "operation": "addOrReplace",
+                            "value": "[resourcegroup().tags['AssetName']]"
+                        },
+                        {
+                            "field": "tags['CostCentre']",
+                            "operation": "addOrReplace",
+                            "value": "[resourcegroup().tags['CostCentre']]"
+                        },
+                        {
+                            "field": "tags['CostCentreName']",
+                            "operation": "addOrReplace",
+                            "value": "[resourcegroup().tags['CostCentreName']]"
+                        },
+                        {
+                            "field": "tags['DataClassification']",
+                            "operation": "addOrReplace",
+                            "value": "[resourcegroup().tags['DataClassification']]"
+                        },
+                        {
+                            "field": "tags['Environment']",
+                            "operation": "addOrReplace",
+                            "value": "[resourcegroup().tags['Environment']]"
+                        }
+                    ],
+                    "roleDefinitionIds": [
+                        "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+                    ]
+                },
+                "effect": "[parameters('effect')]"
+            }
+        }
+    }
+}

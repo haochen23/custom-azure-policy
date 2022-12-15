@@ -1,0 +1,67 @@
+{
+  "properties": {
+    "displayName": "Mandatory Tags for Resources",
+    "description": "Mandatory Tags for Resources",
+    "policyType": "Custom",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "Tags",
+      "version": "1.0.0",
+      "source": "AzurePolicies/policy-data"
+    },
+    "parameters": {
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "description": "The effect determines what happens when the policy rule is evaluated to match",
+          "displayName": "Effect"
+        },
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Audit"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "anyOf": [
+          {
+            "exists": "false",
+            "field": "tags['AssetID']"
+          },
+          {
+            "exists": "false",
+            "field": "tags['AssetName']"
+          },
+          {
+            "exists": "false",
+            "field": "tags['CostCentre']"
+          },
+          {
+            "exists": "false",
+            "field": "tags['CostCentreName']"
+          },
+          {
+            "field": "tags['DataClassification']",
+            "notIn": [
+              "restricted",
+              "confidential",
+              "internal",
+              "public",
+              "NA"
+            ]
+          },
+          {
+            "exists": "false",
+            "field": "tags['Environment']"
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]"
+      }
+    }
+  }
+}

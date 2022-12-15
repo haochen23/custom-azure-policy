@@ -1,0 +1,49 @@
+{
+    "properties": {
+        "displayName": "BackupTier Tag for Resources",
+        "description": "BackupTier Tag for Resources",
+        "policyType": "Custom",
+        "mode": "Indexed",
+        "metadata": {
+            "category": "Tags",
+            "version": "1.0.0",
+            "source": "AzurePolicies/policy-data"
+        },
+        "parameters": {
+            "effect": {
+                "type": "String",
+                "metadata": {
+                    "description": "The effect determines what happens when the policy rule is evaluated to match",
+                    "displayName": "Effect"
+                },
+                "allowedValues": [
+                    "Audit",
+                    "Disabled"
+                ],
+                "defaultValue": "Audit"
+            }
+        },
+        "policyRule": {
+            "if": {
+                "anyOf": [
+                    {
+                        "exists": "false",
+                        "field": "tags['BackupTier']"
+                    },
+                    {
+                        "field": "tags['BackupTier']",
+                        "notIn": [
+                            "gold",
+                            "silver",
+                            "bronze",
+                            ""
+                        ]
+                    }
+                ]
+            },
+            "then": {
+                "effect": "[parameters('effect')]"
+            }
+        }
+    }
+}
